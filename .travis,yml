@@ -1,0 +1,25 @@
+language: php
+php: 7.0 7.1
+
+before_script:
+ - composer install
+
+script:
+#ajouter les commandes pour lancer  les test
+ - docker run - -rm -v $PWD:/app phpqa/phpcs .
+ - docker run - -rm -v $PWD:/app phpqa/security-checker security:check
+ - phpunit
+
+deploy:
+	provider: heroku
+	api_key:
+		secure: clef api
+	app: induweb
+	on:
+		repo: Fradeira/indus_web_esgi
+	branch:  master
+
+notifications:
+	email:
+		on_success: never
+		on_failure: always 
