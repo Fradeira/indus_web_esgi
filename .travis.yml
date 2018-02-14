@@ -12,6 +12,8 @@ script:
 
 deploy:
 	provider: heroku
+	api_key:
+		secure:
 	app: induweb
 	on:
 		repo: Fradeira/indus_web_esgi
