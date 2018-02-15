@@ -1,24 +1,26 @@
 language: php
 php: 7.0 7.1 7.1.11
+
 before_script:
   - composer install
+
 script:
-- docker run --rm -v $PWD:/app phpqa/phpcs .
-- docker run --rm -v $PWD:/app phpqa/security-checker security:check
-- phpunit
+  - docker run --rm -v $PWD:/app phpqa/phpcs .
+  - docker run --rm -v $PWD:/app phpqa/security-checker security:check
+  - phpunit
 
 deploy:
-	provider: heroku
-	api_key:
-		secure: JYYTlNLmXhoSlGB8aJdnfAYrzEEu7VdzebBye5EdagxDxo8Yv/tq+zHua5gZpaf3i5bGthBV9T8hXlmUfLXw6y/Vtq6yg66PUu/15KRSCUVEjys1O03ycFQbAla11qxXnu50tFriaNYtF/LMUpupeL19GTpChrK21RjeGyieZ/7A269hl4LFbHk+N1n/VSDIJrVjG+Cr164KZ2VuhjR5Q0/2RM3Qe7FftwkmWbPCqlAfSMHIb/WJix6jim1nJAn65BidldNQxf3YRWVsvClo2+bkRH8CCVuya9Vqn2VgTmfdX5BASa0zVWHx0y40LmhH6XBF7ssKZDqz0sS5WP2Qb+uH2W9Yx79PCyX4w9UHOd107rH4QiIufWpcRI46lVdBG4pBBacbmpam76HjfSGovGuL46C0lwhbgaNh7X9JKCVCHszcd89uOw2xXJQwY8I+fxaYwI4RJzKUWTOcOFcju3SHG6N/ojYknrShFnqYb1uCCZXiNnRxkZp0TjK3NStx2hvis3+zFz6vy9I5GWNb3mJsoPSurWRvYhOsDOfGDfPIYjxo3vRIBc1yqBCJHdTU0BPwdPBT4Rl8DeANRbXxATGfxnJ8NDmcJNavP53HrRNsJXVu7KC6MHtkBvwFb0Ku7YpMI1pvSqWnDgpXjI2j/TIFGyglUGm3cPl4KaCeeWg=
-	app: induweb
-	on:
-		repo: Fradeira/indus_web_esgi
-	branch:  master
+  provider: heroku
+  api_key:
+    secure: JYYTlNLmXhoSlGB8aJdnfAYrzEEu7VdzebBye5EdagxDxo8Yv/tq+zHua5gZpaf3i5bGthBV9T8hXlmUfLXw6y/Vtq6yg66PUu/15KRSCUVEjys1O03ycFQbAla11qxXnu50tFriaNYtF/LMUpupeL19GTpChrK21RjeGyieZ/7A269hl4LFbHk+N1n/VSDIJrVjG+Cr164KZ2VuhjR5Q0/2RM3Qe7FftwkmWbPCqlAfSMHIb/WJix6jim1nJAn65BidldNQxf3YRWVsvClo2+bkRH8CCVuya9Vqn2VgTmfdX5BASa0zVWHx0y40LmhH6XBF7ssKZDqz0sS5WP2Qb+uH2W9Yx79PCyX4w9UHOd107rH4QiIufWpcRI46lVdBG4pBBacbmpam76HjfSGovGuL46C0lwhbgaNh7X9JKCVCHszcd89uOw2xXJQwY8I+fxaYwI4RJzKUWTOcOFcju3SHG6N/ojYknrShFnqYb1uCCZXiNnRxkZp0TjK3NStx2hvis3+zFz6vy9I5GWNb3mJsoPSurWRvYhOsDOfGDfPIYjxo3vRIBc1yqBCJHdTU0BPwdPBT4Rl8DeANRbXxATGfxnJ8NDmcJNavP53HrRNsJXVu7KC6MHtkBvwFb0Ku7YpMI1pvSqWnDgpXjI2j/TIFGyglUGm3cPl4KaCeeWg=
+  app: induweb
+  on:
+    repo: Fradeira/indus_web_esgi
+    branch:  master
 
 notifications:
-	email:
-		recipients:
-		- guillaumefradeira@yahoo.fr
-		on_success: never
-		on_failure: always
+  email:
+    recipients:
+      - guillaumefradeira@yahoo.fr
+    on_failure: always
+    on_success: never
