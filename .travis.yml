@@ -25,5 +25,5 @@ notifications:
   email:
     recipients:
       - guillaumefradeira@yahoo.fr
-    on_success: never
     on_failure: always
+    on_success: never
