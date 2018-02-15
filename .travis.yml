@@ -1,10 +1,7 @@
 language: php
 php: 7.0 7.1 7.1.11
 before_script:
-  # Composer.
-  - sed -i '1i export PATH="$HOME/.composer/vendor/bin:$PATH"' $HOME/.bashrc
-  - source $HOME/.bashrc
-  - composer self-update
+  - composer install --dev
 script:
 	- docker run --rm -v $PWD:/app phpqa/phpcs .
 	- docker run --rm -v $PWD:/app phpqa/security-checker security:check
