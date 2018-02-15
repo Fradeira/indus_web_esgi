@@ -1,12 +1,15 @@
 language: php
 php: 7.0 7.1 7.1.11
 before_script:
-- composer install
+  # Composer.
+  - sed -i '1i export PATH="$HOME/.composer/vendor/bin:$PATH"' $HOME/.bashrc
+  - source $HOME/.bashrc
+  - composer self-update
 script:
-- docker run --rm -v $PWD:/app phpqa/phpcs .
-- docker run --rm -v $PWD:/app phpqa/security-checker security:check
-- phpunit
-- if [[ "$WITH_COVERAGE" == "true" ]]; then xdebug-enable; fi
+	- docker run --rm -v $PWD:/app phpqa/phpcs .
+	- docker run --rm -v $PWD:/app phpqa/security-checker security:check
+	- phpunit
+	- if [[ "$WITH_COVERAGE" == "true" ]]; then xdebug-enable; fi
 deploy:
   provider: heroku
   api_key:
